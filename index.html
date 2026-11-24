@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Continental Garage — автосервис в Алматы, проспект Райымбека, 50/5</title>
+<meta name="description" content="Автосервис на проспекте Райымбека, 50/5: диагностика, ремонт бензиновых и дизельных двигателей, шлифовка/расточка/гильзовка/опрессовка, ремонт ходовой части, проточка тормозных дисков, развал-схождение.">
+<link rel="canonical" href="https://pro100site.github.io/continental-garage/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Continental Garage — автосервис в Алматы, Райымбека, 50/5">
+<meta property="og:description" content="Автосервис на проспекте Райымбека, 50/5: диагностика, ремонт бензиновых и дизельных двигателей, шлифовка/расточка/гильзовка/опрессовка, ремонт ходовой части, проточка тормозных дисков, развал-схождение.">
+<meta property="og:url" content="https://pro100site.github.io/continental-garage/">
+<meta property="og:site_name" content="Continental Garage">
+<meta property="og:image" content="https://pro100site.github.io/continental-garage/img/og-cover.jpg">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
+<meta name="theme-color" content="#0E1114">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230E1114'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='%23F2A33C' text-anchor='middle'%3ECG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{
+  --bg:#0E1114;--panel:#151A1F;--panel2:#1B222A;--line:#2B343D;
+  --ink:#F1EEE9;--mut:#9BA7B2;--amber:#F2A33C;--amber-d:#C9761F;
+  --h:"Archivo Black",system-ui,sans-serif;
+  --b:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --m:"IBM Plex Mono",ui-monospace,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--b);font-size:16px;line-height:1.58;overflow-x:hidden;padding-bottom:78px}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--h);font-weight:400;line-height:1;letter-spacing:-.015em;margin:0}
+.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 18px}
+.ic{flex:none}
+.mono{font-family:var(--m);letter-spacing:.12em;text-transform:uppercase}
+
+/* header */
+.hd{position:sticky;top:0;z-index:60;background:rgba(14,17,20,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;flex:1 1 auto;min-width:0;overflow:hidden}
+.mark{width:40px;height:40px;flex:none;display:flex;align-items:center;justify-content:center;border:1px solid rgba(242,163,60,.55);border-radius:10px;font-family:var(--m);font-size:13px;letter-spacing:.04em;color:var(--amber);background:linear-gradient(150deg,rgba(242,163,60,.14),transparent 60%)}
+.bt{min-width:0}
+.bn{display:block;font-family:var(--h);font-size:15.5px;line-height:1.12;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bs{display:none;font-family:var(--m);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-top:4px}
+.hd-r{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.hd-h{display:none;font-family:var(--m);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.tel{display:inline-flex;align-items:center;min-height:44px;padding:0 13px;border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap}
+
+/* hero */
+.hero{padding:26px 0 8px}
+.hg{display:grid;gap:22px}
+.kicker{margin:0 0 14px;font-family:var(--m);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+h1{font-size:clamp(2.1rem,10.4vw,4rem)}
+.lead{margin:16px 0 0;max-width:44ch;color:var(--mut);font-size:15.5px}
+.cta{display:grid;gap:10px;margin-top:22px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;min-height:52px;border-radius:12px;font-weight:600;font-size:15.5px;text-align:center;padding:0 16px}
+.btn-wa{background:linear-gradient(135deg,var(--amber),var(--amber-d));color:#181207}
+.btn-gh{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.facts{list-style:none;display:flex;flex-wrap:wrap;gap:16px 22px;margin:22px 0 0;padding:18px 0 0;border-top:1px solid var(--line)}
+.facts b{display:block;font-family:var(--m);font-size:19px;color:var(--amber);line-height:1.1}
+.facts span{display:block;font-size:11.5px;color:var(--mut);margin-top:3px;max-width:15ch}
+.hfig{position:relative;margin:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;background:var(--panel2)}
+.hfig img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.plate,.stamp{position:absolute;z-index:2}
+.plate{left:14px;bottom:14px;display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:11px;background:rgba(14,17,20,.82);border:1px solid rgba(242,163,60,.35);backdrop-filter:blur(6px)}
+.plate b{font-family:var(--m);font-size:17px;color:var(--amber);line-height:1}
+.plate span{font-size:11px;color:var(--mut);line-height:1.2;max-width:11ch}
+.stamp{right:14px;top:14px;width:74px;height:74px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:var(--m);font-size:8.5px;letter-spacing:.1em;line-height:1.35;text-transform:uppercase;color:var(--amber);border:1px dashed rgba(242,163,60,.6);background:rgba(14,17,20,.55)}
+
+/* sections */
+section{padding:52px 0}
+.sec-k{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-family:var(--m);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
+.sec-k::after{content:"";flex:1;height:1px;background:var(--line)}
+h2{font-size:clamp(1.55rem,6.4vw,2.5rem)}
+.slead{margin:12px 0 0;color:var(--mut);max-width:52ch;font-size:15px}
+
+/* spec */
+.spec{margin-top:24px;border-top:1px solid var(--line)}
+.spec details{border-bottom:1px solid var(--line)}
+.spec summary{display:flex;align-items:center;gap:12px;min-height:62px;cursor:pointer;list-style:none;padding:6px 0}
+.spec summary::-webkit-details-marker{display:none}
+.snum{font-family:var(--m);font-size:12px;color:var(--amber);flex:none;width:22px}
+.stt{font-family:var(--h);font-size:15.5px;line-height:1.2;flex:1;min-width:0}
+.scnt{font-family:var(--m);font-size:11px;color:var(--mut);flex:none}
+.schev{width:18px;height:18px;flex:none;color:var(--amber);transition:transform .2s}
+details[open] .schev{transform:rotate(180deg)}
+.spec ul{list-style:none;margin:0;padding:0 0 18px 34px;display:grid;gap:9px}
+.spec li{position:relative;color:var(--mut);font-size:14.5px;padding-left:16px}
+.spec li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:var(--amber-d)}
+
+/* price */
+.price{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plist{list-style:none;margin:22px 0 0;padding:0}
+.plist li{display:flex;align-items:baseline;gap:10px;padding:15px 0;border-bottom:1px dashed var(--line)}
+.pname{font-size:15px;max-width:34ch}
+.pdots{flex:1;min-width:12px;border-bottom:1px dotted #3b4650;transform:translateY(-4px)}
+.pval{font-family:var(--m);font-size:14.5px;color:var(--amber);white-space:nowrap}
+.pnote{margin:18px 0 0;color:var(--mut);font-size:14px;max-width:56ch}
+.psrc{margin:8px 0 0;font-family:var(--m);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#6f7b86}
+
+/* gallery */
+.gal{display:grid;gap:12px;margin-top:24px}
+.gal figure{position:relative;margin:0;border-radius:14px;overflow:hidden;aspect-ratio:16/10;border:1px solid var(--line);background:var(--panel2)}
+.gal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;font-size:12.5px;color:#E7E1D6;background:linear-gradient(to top,rgba(10,12,14,.86),transparent)}
+
+/* reviews */
+.revs{display:grid;gap:12px;margin-top:22px}
+.rev{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.rev p{margin:0;font-size:14.5px;color:#DCD6CB}
+.rev .st{margin-top:12px;font-family:var(--m);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+.rline{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:18px;font-size:13.5px;color:var(--mut)}
+.rline b{font-family:var(--m);color:var(--amber);font-size:15px}
+.rline a{color:var(--amber);border-bottom:1px solid rgba(242,163,60,.4)}
+
+/* contacts */
+.cc{display:grid;gap:12px;margin-top:22px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.clabel{display:block;font-family:var(--m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+.cval{display:block;font-size:15.5px;min-width:0;word-break:break-word}
+.prow{display:block;font-family:var(--m);font-size:15px;padding:6px 0;min-height:34px}
+.prow:first-of-type{color:var(--amber)}
+.hrow{display:flex;justify-content:space-between;gap:12px;font-size:14.5px;padding:4px 0;color:#DCD6CB}
+.hrow span:last-child{font-family:var(--m);font-size:13.5px;color:var(--mut)}
+#map{height:320px;border-radius:14px;border:1px solid var(--line);margin-top:14px;z-index:1}
+.mapnote{margin:10px 0 0;font-size:13.5px;color:var(--mut)}
+.mapnote a{color:var(--amber)}
+
+/* final cta */
+.final{border-top:1px solid var(--line);background:radial-gradient(120% 120% at 20% 0%,rgba(242,163,60,.12),transparent 60%)}
+.final .cta{grid-template-columns:1fr;max-width:420px}
+
+/* footer */
+.ft{border-top:1px solid var(--line);padding:26px 0 30px;color:var(--mut);font-size:12.5px}
+.ft .wrap{display:grid;gap:8px}
+.ft a.made{color:var(--amber);text-decoration:underline;display:inline-flex;align-items:center;min-height:44px}
+
+/* sticky */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:80;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:rgba(14,17,20,.95);backdrop-filter:blur(12px);border-top:1px solid var(--line);transform:translateY(130%);transition:transform .26s ease}
+.sticky.on{transform:none}
+.sticky .btn{min-height:46px;font-size:14.5px;border-radius:10px}
+
+@media(min-width:560px){
+  .bs{display:block}
+  .cta{grid-template-columns:1fr 1fr}
+}
+@media(min-width:900px){
+  body{padding-bottom:0}
+  .hd-h{display:block}
+  .hg{grid-template-columns:1.04fr .96fr;align-items:stretch;gap:34px}
+  .hfig{aspect-ratio:auto;min-height:480px}
+  h1{font-size:clamp(2.6rem,4.4vw,3.9rem)}
+  .cta{grid-template-columns:1fr 1fr;max-width:430px}
+  .facts{margin-top:26px}
+  section{padding:72px 0}
+  .gal{grid-template-columns:1fr 1fr;gap:14px}
+  .revs{grid-template-columns:repeat(3,1fr)}
+  .cc{grid-template-columns:1.1fr 1fr 1.1fr}
+  .spec summary{min-height:68px}
+  .sticky{display:none}
+  footer .wrap{grid-template-columns:1fr auto}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark">CG</span>
+      <div class="bt">
+        <span class="bn">Continental Garage</span>
+        <span class="bs">автосервис · Райымбека, 50/5</span>
+      </div>
+    </div>
+    <div class="hd-r">
+      <span class="hd-h">Пн–Сб 09:30–18:00</span>
+      <a class="tel" href="tel:+77753197874">+7 775 319 78 74</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hg">
+    <div class="hcopy">
+      <p class="kicker">проспект Райымбека, 50/5 · Медеуский район</p>
+      <h1>Ремонт двигателя,<br>ходовой и тормозов</h1>
+      <p class="lead">Автосервис на Райымбека: компьютерная диагностика, капремонт бензиновых и дизельных двигателей с расточкой и гильзовкой, ходовая часть, проточка тормозных дисков. Приём по записи.</p>
+      <div class="cta">
+        <a class="btn btn-wa" href="https://wa.me/77753197874?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20Continental%20Garage" target="_blank" rel="noopener">Написать в WhatsApp</a>
+        <a class="btn btn-gh" href="tel:+77753197874">Позвонить</a>
+      </div>
+      <ul class="facts">
+        <li><b>4,9</b><span>рейтинг в 2ГИС</span></li>
+        <li><b>593</b><span>оценки клиентов</span></li>
+        <li><b>2019</b><span>победитель 2GIS Awards</span></li>
+      </ul>
+    </div>
+    <figure class="hfig">
+      <img src="img/hero.jpg" width="864" height="1152" alt="Головка блока цилиндров на верстаке в цеху Continental Garage">
+      <div class="plate"><b>4,9</b><span>2ГИС · 593 оценки</span></div>
+      <div class="stamp">2GIS<br>Awards<br>2019</div>
+    </figure>
+  </div>
+</section>
+
+<section id="works">
+  <div class="wrap">
+    <p class="sec-k">спецификация работ</p>
+    <h2>Что делаем<br>по узлам</h2>
+    <p class="slead">Четыре направления — от диагностики до механической обработки. Список услуг взят из карточки в 2ГИС, без «и ещё много всего».</p>
+    <div class="spec">
+      <details open>
+        <summary><span class="snum">01</span><span class="stt">Двигатель</span><span class="scnt">4</span><svg class="schev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <ul>
+          <li>Ремонт бензиновых и дизельных двигателей</li>
+          <li>Шлифовка, расточка, гильзовка, опрессовка</li>
+          <li>Замена масла — аппаратная</li>
+          <li>Обслуживание системы охлаждения и климата</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="snum">02</span><span class="stt">Ходовая часть</span><span class="scnt">3</span><svg class="schev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <ul>
+          <li>Ремонт ходовой части автомобиля</li>
+          <li>Ремонт стоек и пневмоподвески</li>
+          <li>Развал-схождение</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="snum">03</span><span class="stt">Тормоза</span><span class="scnt">1</span><svg class="schev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <ul>
+          <li>Проточка тормозных дисков</li>
+        </ul>
+      </details>
+      <details>
+        <summary><span class="snum">04</span><span class="stt">Диагностика и электрика</span><span class="scnt">3</span><svg class="schev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <ul>
+          <li>Компьютерная диагностика автомобилей</li>
+          <li>Ремонт стартеров и генераторов</li>
+          <li>Автосигнализации</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="price" id="price">
+  <div class="wrap">
+    <p class="sec-k">прайс</p>
+    <h2>Цены из карточки 2ГИС</h2>
+    <ul class="plist">
+      <li><span class="pname">Компьютерная диагностика</span><span class="pdots"></span><span class="pval">5 000 ₸</span></li>
+<li><span class="pname">Диагностика ходовой, ДВС, системы охлаждения, масла/жидкости/течи</span><span class="pdots"></span><span class="pval">3 000–5 000 ₸</span></li>
+    </ul>
+    <p class="pnote">Остальные работы считаем после осмотра и называем сумму до начала ремонта. Запчасти — по согласованию.</p>
+    <p class="psrc">Прайс обновлён в карточке 2ГИС 5 марта 2026</p>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="wrap">
+    <p class="sec-k">цех</p>
+    <h2>Как это выглядит</h2>
+    <div class="gal">
+      <figure>
+        <img src="img/brakes.jpg" width="1152" height="864" alt="Тормозной диск на ступице — проточка тормозных дисков">
+        <figcaption>Проточка дисков без замены — частая история для тормозов</figcaption>
+      </figure>
+      <figure>
+        <img src="img/lift.jpg" width="1152" height="864" alt="Автомобиль на двухстоечном подъёмнике, вид снизу">
+        <figcaption>Ходовая и подвеска — на подъёмнике, с осмотром снизу</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <p class="sec-k">отзывы</p>
+    <h2>Что пишут в 2ГИС</h2>
+    <div class="revs">
+      <blockquote class="rev"><p>Приехал с проблемой по двигателю: сначала диагностика, потом назвали цену и только после согласования начали работу. Сделали в срок, старые детали отдали.</p><div class="st">отзыв из 2ГИС</div></blockquote>
+      <blockquote class="rev"><p>Записался по телефону, машину взяли сразу. По ходовой показали, что действительно требует замены, а что ещё походит — лишнего не навязывали.</p><div class="st">отзыв из 2ГИС</div></blockquote>
+      <blockquote class="rev"><p>Шуршали тормоза, был готов менять всё подряд. Посмотрели и обошлись чисткой и смазкой — обошлось дешевле, чем рассчитывал.</p><div class="st">отзыв из 2ГИС</div></blockquote>
+    </div>
+    <div class="rline"><b>4,9</b> из 5 · 593 оценки · <a href="https://2gis.kz/almaty/firm/70000001035966598/tab/reviews" target="_blank" rel="noopener">все отзывы в 2ГИС</a></div>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="wrap">
+    <p class="sec-k">контакты</p>
+    <h2>Записаться</h2>
+    <div class="cc">
+      <div class="card">
+        <span class="clabel">телефоны</span>
+        <a class="prow" href="tel:+77753197774">+7 775 319 78 74</a>
+<a class="prow" href="tel:+77473999567">+7 747 399 95 67</a>
+<a class="prow" href="tel:+77273279517">+7 727 327 95 18</a>
+        <a class="btn btn-wa" style="margin-top:12px" href="https://wa.me/77753197874?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20Continental%20Garage" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <div class="card">
+        <span class="clabel">часы работы</span>
+        <div class="hrow"><span>Пн–Пт</span><span>09:30–18:00</span></div>
+        <div class="hrow"><span>Сб</span><span>09:30–18:00</span></div>
+        <div class="hrow"><span>Вс</span><span>выходной</span></div>
+        <p class="pnote" style="margin-top:10px;font-size:13px">Приём по предварительной записи</p>
+      </div>
+      <div class="card">
+        <span class="clabel">адрес</span>
+        <span class="cval">проспект Райымбека, 50/5</span>
+        <span class="cval" style="color:var(--mut);font-size:14px;margin-top:4px">Медеуский район, Алматы 050002</span>
+        <a class="btn btn-gh" style="margin-top:12px" href="https://2gis.kz/almaty/firm/70000001035966598" target="_blank" rel="noopener">Открыть в 2ГИС</a>
+      </div>
+    </div>
+    <div id="map"></div>
+    <p class="mapnote">Ориентир — проспект Райымбека, 50/5, въезд в цех со стороны проспекта. <a href="https://2gis.kz/almaty/firm/70000001035966598" target="_blank" rel="noopener">Маршрут в 2ГИС</a></p>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Сначала диагностика —<br>потом цена</h2>
+    <p class="slead">Позвоните или напишите в WhatsApp: опишите симптом, подскажем, с чего начать и когда есть окно на подъёмнике.</p>
+    <div class="cta">
+      <a class="btn btn-wa" href="https://wa.me/77753197874?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20Continental%20Garage" target="_blank" rel="noopener">Написать в WhatsApp</a>
+      <a class="btn btn-gh" href="tel:+77753197874">+7 775 319 78 74</a>
+    </div>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="wrap">
+    <span>Continental Garage · проспект Райымбека, 50/5, Алматы · Пн–Сб: 09:30–18:00, по предварительной записи</span>
+    <a class="made" href="https://fntai.org" target="_blank" rel="noopener">Сайт сделан бесплатно · FNT AI</a>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky">
+  <a class="btn btn-wa" href="https://wa.me/77753197874?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20Continental%20Garage" target="_blank" rel="noopener">WhatsApp</a>
+  <a class="btn btn-gh" href="tel:+77753197874">Позвонить</a>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+  var s=document.getElementById('sticky');
+  function upd(){ if(!s) return; s.classList.toggle('on', window.scrollY > window.innerHeight*0.7); }
+  window.addEventListener('scroll',upd,{passive:true}); upd();
+  var el=document.getElementById('map');
+  if(el && window.L){
+    var m=L.map(el,{scrollWheelZoom:false}).setView([43.271371,76.959286],16);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(m);
+    L.marker([43.271371,76.959286]).addTo(m).bindPopup('Continental Garage');
+    setTimeout(function(){m.invalidateSize();},600);
+  }
+})();
+</script>
+</body>
+</html>
